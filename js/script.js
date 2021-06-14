@@ -173,24 +173,24 @@ function showPieceMovement(item) {
         document.getElementById('grid-'+target[i]).classList.add('target')
     }
 
-    if(target.length != 0) {
-        selectedPieceAttack(item)
-    }
-
     for(var i = 0; i < canMoveToPlaces.length; i++) {
         var showPieceMovementImg = document.createElement('img')
         showPieceMovementImg.id = 'canMoveToImg'
         showPieceMovementImg.src = 'Images/canMoveTo/canMoveTo.svg'
         document.getElementById('grid-'+canMoveToPlaces[i]).appendChild(showPieceMovementImg)
     }
-
-    if(canMoveToPlaces.length != 0) {
+    if(canMoveToPlaces.length != 0 || target.length != 0) {
         selectedPieceMovement(item)
     }
 }
 
 function selectedPieceMovement(selectedPiece) {
     var toMoveHere = document.querySelectorAll('.canMoveTo')
+    toMoveHere = Array.from(toMoveHere)
+    var toAttackHere = document.querySelectorAll('.target')
+    toAttackHere = Array.from(toAttackHere)
+
+    toMoveHere = toMoveHere.concat(toAttackHere)
     toMoveHere.forEach(function(item){
         item.addEventListener('click', function() {
             if(selectedPiece.firstChild) {
@@ -199,42 +199,35 @@ function selectedPieceMovement(selectedPiece) {
                 }
 
                 if(previousMovementToRemove) {
-                    console.log('hi')
-                    //console.log(previousMovementFromRemove)
-                    //console.log(previousMovementToRemove)
-                    previousMovementFromRemove.classList.remove('previousMovementFrom')
-                    previousMovementToRemove.classList.remove('previousMovementTo')
+                    document.querySelectorAll('.previousMovementFrom').forEach(function(item, index) {
+                        item.classList.remove('previousMovementFrom')
+                    })
+                    document.querySelectorAll('.previousMovementTo').forEach(function(item, index) {
+                        item.classList.remove('previousMovementTo')
+                    })
                 }
                 previousMovementToAdd = item
                 previousMovementFromRemove = previousMovementFromAdd
                 previousMovementToRemove = previousMovementToAdd
-                console.log(previousMovementFromRemove)
-                console.log(previousMovementToRemove)
-                //console.log(previousMovementToAdd)
 
-                item.replaceChild(selectedPiece.firstChild, item.firstChild)
-                selectedPiece.classList.remove('occupied')
-                selectedPiece.classList.remove('selected')
-                item.classList.remove('canMoveTo')
-                item.classList.add('occupied')
+                if(item.classList.contains('canMoveTo')) {
+                    item.replaceChild(selectedPiece.firstChild, item.firstChild)
+                    selectedPiece.classList.remove('occupied')
+                    selectedPiece.classList.remove('selected')
+                    item.classList.remove('canMoveTo')
+                    item.classList.add('occupied') 
                 
-                addMovement()
-                removeMovement()
-            }
-        })
-    })
-}
+                    addMovement()
+                    removeMovement()
+                }
 
-function selectedPieceAttack(selectedPiece) {
-    var targetArray = document.querySelectorAll('.target')
-    targetArray.forEach(function(item) {
-        item.addEventListener('click', function() {
-            try {
-                item.replaceChild(selectedPiece.firstChild, item.firstChild)
-                target = new Array
-                addMovement()
-                removeMovement()
-            } catch(error) {}
+                if(item.classList.contains('target')) {
+                    item.replaceChild(selectedPiece.firstChild, item.firstChild)
+
+                    addMovement()
+                    removeMovement()
+                }
+            }            
         })
     })
 }
