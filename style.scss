@@ -108,3 +108,64 @@ body {
 .previousMovementFrom, .previousMovementTo {
     background-color: #ffbd69;
 }
+
+@media only screen and (max-width: 800px) {
+    .black_square {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .white_square {
+        width: 40px;
+        height: 40px;
+    }
+
+    .button {
+        font-size: 15px;
+        border: 6px solid #00ADB5; 
+    }
+
+    #piece {
+        margin-top: 10px;
+        width: 25px;
+        height: 25px;
+    }
+
+    #canMoveToImg {
+        margin-top: 10px;
+        width: 25px;
+        height: 25px;
+    }
+
+    #title {
+        width: 80px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .black_square {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .white_square {
+        width: 30px;
+        height: 30px;
+    }
+
+    #piece {
+        margin-top: 6px;
+        width: 18px;
+        height: 18px;
+    }
+
+    #canMoveToImg {
+        margin-top: 6px;
+        width: 18px;
+        height: 18px;
+    }
+
+    #title {
+        width: 40px;
+    }
+}
