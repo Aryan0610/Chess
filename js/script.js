@@ -71,8 +71,18 @@ function startGame() {
 /**adds movemnet to the pieces on the board. */
 function addMovement() {
     if(previousMovementFromAdd) {
-        previousMovementFromAdd.classList.add('previousMovementFrom')
-        previousMovementToAdd.classList.add('previousMovementTo')
+        if(previousMovementFromAdd.classList.contains('white_square')) {
+            previousMovementFromAdd.classList.add('previousMovementFromWhite')   
+        } else {
+            previousMovementFromAdd.classList.add('previousMovementFromBlack')
+        }
+
+        if(previousMovementToAdd.classList.contains('white_square')) {
+            previousMovementToAdd.classList.add('previousMovementToWhite')   
+        } else {
+            previousMovementToAdd.classList.add('previousMovementToBlack')
+        }
+        //previousMovementToAdd.classList.add('previousMovementTo')
         //previousMovementFromRemove = previousMovementFromAdd
         //previousMovementToRemove = previousMovementToAdd
 
@@ -112,11 +122,19 @@ function showPieceMovement(item) {
     
     if(whiteTurn) {
         if(item.firstChild.classList.contains('white')) {
-            item.classList.add('selected')
+            if(item.classList.contains('white_square')) {
+                item.classList.add('selectedWhite')
+            } else {
+                item.classList.add('selectedBlack')
+            }
         }
     } else {
         if(item.firstChild.classList.contains('black')) {
-            item.classList.add('selected')
+            if(item.classList.contains('white_square')) {
+                item.classList.add('selectedWhite')
+            } else {
+                item.classList.add('selectedBlack')
+            }
         }
     }
 
@@ -199,11 +217,17 @@ function selectedPieceMovement(selectedPiece) {
                 }
 
                 if(previousMovementToRemove) {
-                    document.querySelectorAll('.previousMovementFrom').forEach(function(item, index) {
-                        item.classList.remove('previousMovementFrom')
+                    document.querySelectorAll('.previousMovementFromWhite').forEach(function(item, index) {
+                        item.classList.remove('previousMovementFromWhite')
+                    })    
+                    document.querySelectorAll('.previousMovementFromBlack').forEach(function(item, index) {
+                        item.classList.remove('previousMovementFromBlack')
                     })
-                    document.querySelectorAll('.previousMovementTo').forEach(function(item, index) {
-                        item.classList.remove('previousMovementTo')
+                    document.querySelectorAll('.previousMovementToWhite').forEach(function(item, index) {
+                        item.classList.remove('previousMovementToWhite')
+                    })
+                    document.querySelectorAll('.previousMovementToBlack').forEach(function(item, index) {
+                        item.classList.remove('previousMovementToBlack') 
                     })
                 }
                 previousMovementToAdd = item
@@ -213,7 +237,8 @@ function selectedPieceMovement(selectedPiece) {
                 if(item.classList.contains('canMoveTo')) {
                     item.replaceChild(selectedPiece.firstChild, item.firstChild)
                     selectedPiece.classList.remove('occupied')
-                    selectedPiece.classList.remove('selected')
+                    selectedPiece.classList.remove('selectedWhite')
+                    selectedPiece.classList.remove('selectedBlack')
                     item.classList.remove('canMoveTo')
                     item.classList.add('occupied') 
                 

@@ -112,8 +112,12 @@ body {
   margin-left: 20px;
 }
 
-.previousMovementFrom, .previousMovementTo {
-  background-color: #ffbd69;
+.previousMovementFromWhite, .previousMovementToWhite, .selectedWhite {
+  background-color: #cce3de;
+}
+
+.previousMovementFromBlack, .previousMovementToBlack, .selectedBlack {
+  background-color: #a4c3b2;
 }
 
 @media only screen and (max-width: 800px) {
