@@ -227,7 +227,7 @@ function showRookMovement(pieceColor, piecePositionId) {
 }
 
 function showBishopMovement(pieceColor, piecePositionId) {
-    console.log('hello')
+    console.log("Bishop Movement")
     var piecePositionArray = piecePositionId.match(/(\d+)/)
     piecePositionId = parseInt(piecePositionArray[0])
     var initialPosition = piecePositionId

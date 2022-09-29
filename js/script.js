@@ -82,15 +82,6 @@ function addMovement() {
         } else {
             previousMovementToAdd.classList.add('previousMovementToBlack')
         }
-        //previousMovementToAdd.classList.add('previousMovementTo')
-        //previousMovementFromRemove = previousMovementFromAdd
-        //previousMovementToRemove = previousMovementToAdd
-
-        //console.log(previousMovementFromAdd)
-        //console.log(previousMovementToAdd)
-        //console.log(previousMovementFromRemove)
-        //console.log(previousMovementToRemove)
-
     }
 
     target = new Array()
@@ -98,42 +89,61 @@ function addMovement() {
     showMovementBool = true
     var occupiedPiece = document.querySelectorAll('.occupied')
     for(var i = 0; i < occupiedPiece.length; i++) {
+
+        /**event linstner for the clicked piece */
         occupiedPiece[i].addEventListener('click', function(event) {
-            /** event.path[1] returns the selected div */
-            removeMovement()
-            if(showMovementBool) {
-                showPieceMovement(event.path[1])
-                selectedPieceDiv = event.path[1]
-                //showMovementBool = false
-            }
+            //        /** event.path[1] returns the selected div */
+            //        removeMovement()
+            //        if(showMovementBool) {
+            //            showPieceMovement(event.path[1])
+            //            /*sleected div is not used anywhere*/
+            //            selectedPieceDiv = event.path[1]
+            //            showMovementBool = false
+            //        }
+            showPieceMovement(event.path[1])
         })
     }
 }
 
 /**show where the selected piece can move */
 var canMoveToPlaces
+
+var intvariable = 0
 function showPieceMovement(item) {
+
+    console.log("ok")
+
+    removeMovement()
+
     previousMovementFromAdd = item
-    //console.log('kamui')
-    //previousMovementFromRemove = previousMovementFromAdd
-    //console.log(previousMovementFromAdd)
     canMoveToPlaces = new Array()
     var selectedPieceClass = item.firstChild.classList
+
+    var aldreadySelectedPiece = document.querySelectorAll(".selectedPiece") 
+    if(aldreadySelectedPiece.length != 0) {
+        for(var i=0; i < aldreadySelectedPiece.length; i++) {
+            aldreadySelectedPiece[i].classList.remove("selectedPiece")
+        }
+    }
     
     if(whiteTurn) {
         if(item.firstChild.classList.contains('white')) {
             if(item.classList.contains('white_square')) {
-                item.classList.add('selectedWhite')
+                //item.classList.add('selectedWhite')
+                item.classList.add('selectedPiece')
             } else {
-                item.classList.add('selectedBlack')
+                //item.classList.add('selectedBlack')
+                item.classList.add('selectedPiece')
             }
         }
     } else {
         if(item.firstChild.classList.contains('black')) {
             if(item.classList.contains('white_square')) {
-                item.classList.add('selectedWhite')
+                //item.classList.add('selectedWhite')
+                item.classList.add('selectedPiece')
             } else {
-                item.classList.add('selectedBlack')
+                //item.classList.add('selectedBlack')
+                item.classList.add('selectedPiece')
             }
         }
     }
