@@ -107,8 +107,11 @@ function showPawnMovement(pieceColor, piecePositionId, piecePosition) {
         }
     }
     return positionPieceCanMoveTo
+
+    /**need to add the code for pawn if it reaches the end */
 }
 
+/**rook movement */
 function showRookMovement(pieceColor, piecePositionId) {
     var piecePositionArray = piecePositionId.match(/(\d+)/)
     piecePositionId = parseInt(piecePositionArray[0])
@@ -215,6 +218,7 @@ function showRookMovement(pieceColor, piecePositionId) {
     }
     piecePositionId = initialPosition
 
+    /**adding all the movements in one array */
     positionPieceCanMoveTo = down.concat(up)
     positionPieceCanMoveTo = positionPieceCanMoveTo.concat(left)
     positionPieceCanMoveTo = positionPieceCanMoveTo.concat(right)
@@ -227,7 +231,6 @@ function showRookMovement(pieceColor, piecePositionId) {
 }
 
 function showBishopMovement(pieceColor, piecePositionId) {
-    console.log("Bishop Movement")
     var piecePositionArray = piecePositionId.match(/(\d+)/)
     piecePositionId = parseInt(piecePositionArray[0])
     var initialPosition = piecePositionId
@@ -521,7 +524,23 @@ function showKnightMovement(pieceColor, piecePositionId) {
     positionPieceCanMoveTo = positionPieceCanMoveTo.concat(left_bottom)
     positionPieceCanMoveTo = positionPieceCanMoveTo.concat(right_bottom)
 
-    console.log('before '+positionPieceCanMoveTo)
+    /**removes the places where the pieces has its own commarade */
+    for(var i=0; i<positionPieceCanMoveTo.length; i++) {
+        var currentGrid = "grid-"+positionPieceCanMoveTo[i]
+        if(document.getElementById(currentGrid).firstChild) {
+            if(pieceColor == "white") {
+                if(whitePieces.includes(document.getElementById(currentGrid).firstChild.classList[0])) {
+                    positionPieceCanMoveTo.splice(i, 1)
+                }
+            } if(pieceColor == "black") {
+                if(blackPieces.includes(document.getElementById(currentGrid).firstChild.classList[0])) {
+                    positionPieceCanMoveTo.splice(i, 1)
+                }
+            } 
+        }
+    }
+
+    
     for(var i=0; i<positionPieceCanMoveTo.length; i++) {
         if(opponent == 'blackPiece') {
             if(getGrid(positionPieceCanMoveTo[i]).firstChild) {
@@ -538,12 +557,9 @@ function showKnightMovement(pieceColor, piecePositionId) {
         }
         
         if(getGrid(positionPieceCanMoveTo[i]).classList.contains('occupied')) {
-            console.log('this is working')
             positionPieceCanMoveTo.splice(i, 1)
         }
     }
-
-    console.log('after ' +positionPieceCanMoveTo)
     
     for(var i = 0; i < positionPieceCanMoveTo.length; i++) {
         document.getElementById('grid-'+positionPieceCanMoveTo[i]).classList.add('canMoveTo')
