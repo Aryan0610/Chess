@@ -1,0 +1,97 @@
+
+#container {
+    display: grid;
+    grid-template-columns: 80% 20%;
+}
+
+#boardContainer {
+    display: flex;
+    justify-content: space-around;
+}
+
+#menuContainer {
+    margin: auto;
+
+    margin-top: 20%;
+}
+
+.button {
+    font-size: 20px;
+    border: 10px solid #00ADB5;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 5px 20px;
+    background-color: #00ADB5;
+    color: #393e46;
+  }
+
+/**aligning board pieces*/
+.row {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.black_square {
+    width: 60px;
+    height: 60px;
+    overflow: auto;
+    background-color: #495057;
+}
+
+.white_square {
+    width: 60px;
+    height: 60px;
+    overflow: auto;
+    background-color: #ADB5BD;
+}
+
+.occupied {
+    overflow: hidden;
+
+    margin: auto;
+
+    display: flex;
+    justify-content: space-around;
+}
+
+#piece {
+    width: 80%;
+    height: auto;
+}
+
+#canMoveToImg {
+    overflow: hidden;
+    margin-top: 15px;
+    width: 40px;
+    height: 40px;
+}
+
+@media only screen and (max-width: 700px) { 
+    #container {
+        display: block;
+    }
+
+    .button {
+        width: 20%;
+        text-align: center;
+
+        margin: auto;
+    }
+}
+
+@media only screen and (max-width: 600px) { 
+    .black_square {
+        width: 40px;
+        height: 40px;
+        overflow: auto;
+        background-color: #495057;
+    }
+    
+    .white_square {
+        width: 40px;
+        height: 40px;
+        overflow: auto;
+        background-color: #ADB5BD;
+    }
+}

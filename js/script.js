@@ -7,7 +7,7 @@ var gameStart = true
 //var occupiedPiece = new Array()
 var whiteTurn = false
 var showMovementBool
-var target = new Array
+var target = new Array()
 var whitePieces = ['whiteRook', 'whiteKnight', 'whiteBishop', 'whiteQueen', 'whiteKing','whitePawn']
 var blackPieces = ['blackRook', 'blackKnight', 'blackBishop', 'blackQueen', 'blackKing','blackPawn']
 
@@ -70,6 +70,8 @@ function startGame() {
 
 /**adds movemnet to the pieces on the board. */
 function addMovement() {
+    console.log("addMovement")
+
     if(previousMovementFromAdd) {
         if(previousMovementFromAdd.classList.contains('white_square')) {
             previousMovementFromAdd.classList.add('previousMovementFromWhite')   
@@ -84,10 +86,10 @@ function addMovement() {
         }
     }
 
-    target = new Array()
     whiteTurn = !whiteTurn
     showMovementBool = true
     var occupiedPiece = document.querySelectorAll('.occupied')
+
     for(var i = 0; i < occupiedPiece.length; i++) {
 
         /**event linstner for the clicked piece */
@@ -103,6 +105,12 @@ function addMovement() {
             showPieceMovement(event.path[1])
         })
     }
+
+    occupiedPiece.forEach(op => {
+        op.addEventListener('click', function(event) {
+            console.log("clicked")
+        })
+    })
 }
 
 /**show where the selected piece can move */
@@ -110,14 +118,12 @@ var canMoveToPlaces
 
 var intvariable = 0
 function showPieceMovement(item) {
-
-    console.log("ok")
-
     removeMovement()
 
     previousMovementFromAdd = item
     canMoveToPlaces = new Array()
     var selectedPieceClass = item.firstChild.classList
+    console.log(selectedPieceClass)
 
     var aldreadySelectedPiece = document.querySelectorAll(".selectedPiece") 
     if(aldreadySelectedPiece.length != 0) {

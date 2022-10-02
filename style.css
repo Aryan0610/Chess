@@ -2,7 +2,7 @@ body {
   font-family: verdana;
 }
 
-.split {
+/*.split {
   height: 100%;
   position: fixed;
   z-index: 1;
@@ -22,18 +22,25 @@ body {
   right: 0;
   width: 30%;
   background-color: #EEEEEE;
+}*/
+
+#container {
+  display: grid;
+  grid-template-columns: 1f 1fr;
 }
 
-.centered {
+
+
+/*.centered {
   position: absolute;
   top: 50%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   text-align: center;
-}
+}*/
 
-.button {
+/*.button {
   font-size: 20px;
   border: 10px solid #00ADB5;
   border-radius: 5px;
@@ -42,13 +49,13 @@ body {
   padding: 5px 20px;
   background-color: #00ADB5;
   color: #393e46;
-}
+}*/
 
 .button:hover {
   color: #EEEEEE;
 }
 
-.board {
+/*.board {
   margin-top: 20px;
   position: absolute;
   top: 50%;
@@ -56,7 +63,7 @@ body {
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   text-align: center;
-}
+}*/
 
 .row {
   display: -webkit-box;
